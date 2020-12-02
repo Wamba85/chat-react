@@ -15,7 +15,7 @@ describe("Chat", () => {
   });
 
   it("should render a <div />", () => {
-    expect(wrapper.find("div").length).toEqual(7);
+    expect(wrapper.find("div").length).toEqual(8);
   });
 
   it("renders minimize and close icon Component", () => {

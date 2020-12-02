@@ -1,12 +1,18 @@
 .container {
-  background-color: black;
+  position: absolute;
+  bottom: 0;
+  right: 1vh;
+  width: 27vh;
+  max-width: 27vh;
   display: flex;
   flex-direction: column;
-  font-size: 0.5em;
+  font-size: 1rem;
+  border-radius: 3% 3% 0 0;
+  overflow: hidden;
 }
 
 .header {
-  background-color: blueviolet;
+  background-color: #1c1c1d;
   display: flex;
   flex: 1 1 auto;
   justify-content: space-between;
@@ -14,26 +20,102 @@
 }
 
 .chatName {
-  font-size: 1vh;
+  font-weight: bold;
+  padding: 3% 0;
   flex: 4 1 auto;
 }
 
-.chatIcons {
+.chatIcon {
   height: 2vh;
   flex: 1 1 auto;
   display: flex;
+  align-self: flex-end;
+}
+
+.messagesWrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  flex: 1 1 auto;
+  height: 26vh;
+  justify-content: flex-end;
+  background-color: #e7e6e6;
 }
 
 .messages {
-  background-color: white;
-  color: black;
-  flex: 10 10 auto;
-  height: 24vh;
-  overflow-y: scroll;
+  box-sizing: border-box;
+  padding: 0 1vh;
+  overflow-y: auto;
 }
 
-.message {
-  background-color: grey;
+.chatMessage {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.chatMessageRight {
+  flex-direction: row-reverse;
+}
+
+.chatAvatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 0.5rem;
+}
+
+.chatAvatarRight {
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+.chatText {
+  display: block;
+  max-width: 65%;
+  background: linear-gradient(#76767a, #606062);
+  border-radius: 0 18px 18px 18px;
+  box-sizing: border-box;
+  padding: 4px 8px;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #e4e3e3;
+  animation-duration: 0.5s;
+  animation-name: fly-in;
+}
+
+.chatTextRight {
+  background: linear-gradient(#5867fb, #3f51b5);
+  border-radius: 18px 0 18px 18px;
+}
+
+.chatAvatarImg {
+  height: 100%;
+}
+
+.inputWrapper {
   padding: 7px 3px;
   flex: 1 1 auto;
+}
+
+.inputText {
+  width: 100%;
+  border: none;
+  box-sizing: border-box;
+  padding: 1rem;
+}
+
+@keyframes fly-in {
+  0% {
+    transform: scale(0.85) translateY(10%);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
 }

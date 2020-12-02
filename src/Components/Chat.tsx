@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faWindowMinimize } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Chat.module.css";
+import noAvatar from "../images/no-avatar.jpg";
 
 // import PropTypes from 'prop-types'
 
@@ -21,22 +22,40 @@ const Chat = () => {
   };
   useEffect(scrollToBottom, [messages]);
 
-  const renderMessages = messages.map((message, i) => <div key={i}>{message}</div>);
+  const renderMessages = messages.map((message, i) => (
+    <div key={i} className={`${styles.chatMessage} ${i % 2 === 0 ? styles.chatMessageRight : ""}`}>
+      <span className={`${styles.chatAvatar} ${i % 2 === 0 ? styles.chatAvatarRight : ""}`}>
+        <img src={noAvatar} alt="avatar" className={styles.chatAvatarImg} />
+      </span>
+      <p className={`${styles.chatText} ${i % 2 === 0 ? styles.chatTextRight : ""}`}>{message}</p>
+    </div>
+  ));
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <div className={styles.chatName}>nome</div>
-        <div className={styles.chatIcons}>
-          <FontAwesomeIcon icon={faWindowMinimize} size="xs" />
-          <FontAwesomeIcon icon={faTimes} size="xs" />
+        <div className={styles.chatName}>Nome Conversazione</div>
+        <div className={styles.chatIcon}>
+          <FontAwesomeIcon icon={faWindowMinimize} size="sm" />
+        </div>
+        <div className={styles.chatIcon}>
+          <FontAwesomeIcon icon={faTimes} size="sm" />
         </div>
       </div>
-      <div className={styles.messages}>
-        {renderMessages}
-        <div ref={messagesEndRef} />
+      <div className={styles.messagesWrapper}>
+        <div className={styles.messages}>
+          {renderMessages}
+          <div ref={messagesEndRef} />
+        </div>
       </div>
-      <div className={styles.message}>
-        <input type="text" name="message" onKeyPress={(e) => handlerMessage(e)} />
+      <div className={styles.inputWrapper}>
+        <input
+          className={styles.inputText}
+          type="text"
+          name="message"
+          autoComplete="off"
+          placeholder="Write something..."
+          onKeyPress={(e) => handlerMessage(e)}
+        />
       </div>
     </div>
   );
