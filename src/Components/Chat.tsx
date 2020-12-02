@@ -6,12 +6,15 @@ import styles from "./Chat.module.css";
 // import PropTypes from 'prop-types'
 
 const Chat = () => {
-  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState<string[]>([]);
   const handlerMessage = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      setMessage(e.currentTarget.value);
+      setMessages([...messages, e.currentTarget.value]);
+      e.currentTarget.value = "";
     }
   };
+
+  const renderMessages = messages.map((message, i) => <div key={i}>{message}</div>);
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -21,7 +24,7 @@ const Chat = () => {
           <FontAwesomeIcon icon={faTimes} size="xs" />
         </div>
       </div>
-      <div className={styles.messages}>{message}</div>
+      <div className={styles.messages}>{renderMessages}</div>
       <div className={styles.message}>
         <input type="text" name="message" onKeyPress={(e) => handlerMessage(e)} />
       </div>

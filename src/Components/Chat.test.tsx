@@ -23,12 +23,15 @@ describe("Chat", () => {
     expect(wrapper.containsMatchingElement(<FontAwesomeIcon icon={faTimes} />)).toEqual(true);
   });
 
-  it("should write text inside <div />", () => {
+  it("should write multiple text inside <div />", () => {
     const input = wrapper.find("input");
 
     input.simulate("focus");
-    input.simulate("keypress", { key: "Enter", currentTarget: { value: "Hello" } });
 
-    expect(wrapper.find(".messages").first().text()).toEqual("Hello");
+    input.simulate("keypress", { key: "Enter", currentTarget: { value: "Hello" } });
+    expect(wrapper.find(".messages").text()).toBe("Hello");
+
+    input.simulate("keypress", { key: "Enter", currentTarget: { value: "there" } });
+    expect(wrapper.find(".messages").text()).toBe("there");
   });
 });

@@ -27,10 +27,13 @@
 .messages {
   background-color: white;
   color: black;
-  flex: 10 10 24vh;
+  flex: 10 10 auto;
+  max-height: 24vh;
+  overflow-y: scroll;
 }
 
 .message {
   background-color: grey;
-  flex: 1 1 6vh;
+  padding: 7px 3px;
+  flex: 1 1 auto;
 }
