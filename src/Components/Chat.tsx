@@ -57,7 +57,7 @@ const Chat = ({ user, left }: chatProps) => {
   const scrollToBottom = () => {
     console.log(`bottom ${user} ${messagesEndRef?.current?.id}`);
     if (messagesEndRef && messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+      messagesEndRef.current.scrollIntoView();
     }
   };
   useEffect(scrollToBottom, [messages, user]);
