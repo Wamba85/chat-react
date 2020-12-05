@@ -2,8 +2,9 @@
   position: absolute;
   bottom: 0;
   right: 1vh;
-  width: 27vh;
-  max-width: 27vh;
+  min-width: 200px;
+  width: 16vw;
+  max-width: 300px;
   display: flex;
   flex-direction: column;
   font-size: 1rem;
