@@ -7,11 +7,35 @@ import noAvatar from "../images/no-avatar.jpg";
 // import PropTypes from 'prop-types'
 
 const Chat = () => {
-  const messagesEndRef = useRef<HTMLDivElement>(null);
   const [messages, setMessages] = useState<string[]>([]);
+  const ws = useRef<WebSocket | null>(null);
+
+  useEffect(() => {
+    ws.current = new WebSocket("ws://localhost:6969");
+    ws.current.onopen = () => console.log("ws opened");
+    ws.current.onclose = () => console.log("ws closed");
+
+    return () => {
+      ws?.current?.close();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!ws.current) return;
+
+    ws.current.onmessage = (e) => {
+      console.log(e);
+      const message = e.data;
+      setMessages((messages) => [...messages, message]);
+    };
+  }, []);
+
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
   const handlerMessage = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      setMessages([...messages, e.currentTarget.value]);
+      const msg = e.currentTarget.value;
+      ws.current?.send(msg);
       e.currentTarget.value = "";
     }
   };
