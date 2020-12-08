@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  display: flex;
 }
 
 .App-logo {
@@ -14,6 +15,7 @@
 }
 
 .App-header {
+  width: 100%;
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -26,6 +28,11 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.Conversations {
+  width: 20vw;
+  max-width: 20vw;
 }
 
 @keyframes App-logo-spin {

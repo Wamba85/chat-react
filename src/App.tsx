@@ -2,6 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import Chat from "./Components/Chat";
+import Conversation from "./Components/Conversation";
 
 function App() {
   return (
@@ -17,6 +18,14 @@ function App() {
         <Chat user="Gianni" left="1vh" />
         <Chat user="Pinotto" left="400px" />
       </header>
+      <div className="Conversations">
+        <h3>Conversations</h3>
+        <div className="conversationsContainer">
+          <Conversation />
+          <Conversation />
+          <Conversation />
+        </div>
+      </div>
     </div>
   );
 }
